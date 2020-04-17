@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="15dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="16sp"
+        android:text="Please enter your password to delete your account, after enter your password click on delete button. If once you deleted your account it can't be restored."/>
+
+    <EditText
+        android:id="@+id/edt_deletePass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/btn_deleteAcc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="delete account"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>

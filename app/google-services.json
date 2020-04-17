@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "216301630795",
+    "firebase_url": "https://chatdemo-8a4a6.firebaseio.com",
+    "project_id": "chatdemo-8a4a6",
+    "storage_bucket": "chatdemo-8a4a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216301630795:android:6cf3958b4eb05468d124ce",
+        "android_client_info": {
+          "package_name": "com.iknoortech.videochatdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216301630795-hjcttvb1jtn1vqj5jaorss0t49j53524.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iknoortech.videochatdemo",
+            "certificate_hash": "e97f9cebdcbd331d2b67f72829653fb1bd04f047"
+          }
+        },
+        {
+          "client_id": "216301630795-t3kceva4bstnaa4mpm4224j9fg67l47i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMP2sI9BmooIKtsxuylb28FN4v2EaTnKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216301630795-t3kceva4bstnaa4mpm4224j9fg67l47i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

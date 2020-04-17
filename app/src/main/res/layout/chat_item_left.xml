@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="8dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_chatHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chat_header"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/black"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/tv_chatHeader">
+    <TextView
+        android:id="@+id/tv_chatMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:hint="hello"
+        android:background="@drawable/back_left"/>
+
+    <ImageView
+        android:id="@+id/img_seenMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_chatMsg"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_chatTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_chatMsg"
+        android:layout_toLeftOf="@id/img_seenMsg"
+        android:hint="00:00 AM"
+        android:textSize="12sp"
+        android:layout_marginRight="5dp"/>
+    </RelativeLayout>
+</RelativeLayout>
