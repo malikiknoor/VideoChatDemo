@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
     tools:context=".activity.AllUserActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/editText10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:drawableRight="@drawable/serach_black"
+        android:paddingRight="10dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:hint="Enter user name"
+        android:textSize="14dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_allUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="4dp"/>
+
+</LinearLayout>

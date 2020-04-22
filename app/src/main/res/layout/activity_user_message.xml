@@ -76,23 +76,14 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
 
-        <ImageView
-            android:id="@+id/emoji_btn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="6dp"
-            android:visibility="gone"
-            android:layout_centerVertical="true"
-            />
-
         <EditText
             android:id="@+id/edt_typeMsg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Type a message"
             android:visibility="gone"
+            android:maxHeight="80dp"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/emoji_btn"
             android:layout_toLeftOf="@id/img_sendMsg"/>
 
         <ImageView

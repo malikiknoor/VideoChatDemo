@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +26,8 @@ import com.iknoortech.videochatdemo.helper.AppUtils;
 import com.iknoortech.videochatdemo.listner.BlockClickListner;
 import com.iknoortech.videochatdemo.listner.FriendClickListner;
 
+import static com.iknoortech.videochatdemo.helper.AppUtils.seeFullImage;
+
 
 public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.ViewHolder> {
 
@@ -34,20 +37,28 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Vi
     private FriendClickListner friendClickListner;
     private BlockClickListner sendRequestClickListner;
     private ArrayList<String> imageList = new ArrayList<>();
+    private int listType = 0;
 
     public SuggestionAdapter(Context context, ArrayList<String> idList, DatabaseReference mDatabaseReference,
-                             FriendClickListner friendClickListner, BlockClickListner sendRequestClickListner) {
+                             FriendClickListner friendClickListner, BlockClickListner sendRequestClickListner,
+                             int listType) {
         this.context = context;
         this.idList = idList;
         this.mDatabaseReference = mDatabaseReference;
         this.friendClickListner = friendClickListner;
         this.sendRequestClickListner = sendRequestClickListner;
+        this.listType = listType;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_suggestion, parent, false);
+        View view;
+        if(listType == 0) {
+            view = LayoutInflater.from(context).inflate(R.layout.item_suggestion, parent, false);
+        }else{
+            view = LayoutInflater.from(context).inflate(R.layout.item_all_user, parent, false);
+        }
         return new ViewHolder(view);
     }
 
@@ -111,7 +122,7 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Vi
                         friendClickListner.onClick("suggestion", idList.get(position));
                     }
                 } else {
-
+                    seeFullImage(context, null, imageList.get(position), holder.userImage);
                 }
             }
         });
@@ -126,7 +137,7 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Vi
             } else {
                 return idList.size();
             }
-        }else{
+        } else {
             return 0;
         }
     }
@@ -145,4 +156,13 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Vi
 
         }
     }
+
+//    @Override
+//    public int getItemViewType(int position) {
+//        if (userType == 0) {
+//            return ALL_USER;
+//        } else {
+//            return SUGGESTION_USER;
+//        }
+//    }
 }

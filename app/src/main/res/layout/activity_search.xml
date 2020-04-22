@@ -16,6 +16,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
+        android:textSize="14dp"
         android:inputType="textPersonName"
         android:hint="Enter name "
         android:drawableRight="@drawable/serach_black"

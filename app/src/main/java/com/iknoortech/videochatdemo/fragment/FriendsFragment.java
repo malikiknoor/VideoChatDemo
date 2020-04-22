@@ -43,6 +43,7 @@ import com.iknoortech.videochatdemo.helper.AppUtils;
 import com.iknoortech.videochatdemo.listner.BlockClickListner;
 import com.iknoortech.videochatdemo.listner.FriendClickListner;
 import com.iknoortech.videochatdemo.model.BlockedUserList;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.iknoortech.videochatdemo.helper.AppConstant.blockTableName;
@@ -62,7 +63,7 @@ public class FriendsFragment extends Fragment {
 
     private RecyclerView rv_friends, rv_suggestion;
     private LinearLayout ll_NoFriend;
-    private TextView tv_suggestion, btn_find;
+    private TextView tv_suggestion, btn_find, tv_seeAll;
     private FriendsAdapter friendAdapter;
     private SuggestionAdapter suggestionAdapter;
     private ArrayList<String> friendIdList;
@@ -105,6 +106,7 @@ public class FriendsFragment extends Fragment {
         rv_friends = view.findViewById(R.id.rv_friends);
         rv_suggestion = view.findViewById(R.id.rv_suggestion);
         tv_noFriend = view.findViewById(R.id.textView17);
+        tv_seeAll = view.findViewById(R.id.textView51);
         pb_friend = view.findViewById(R.id.pb_friend);
         tv_suggestion = view.findViewById(R.id.textView21);
         btn_find = view.findViewById(R.id.btn_find);
@@ -121,7 +123,7 @@ public class FriendsFragment extends Fragment {
 
         profileDialog = new Dialog(getActivity());
 
-        if(!AppUtils.isConnectionAvailable(getActivity())) {
+        if (!AppUtils.isConnectionAvailable(getActivity())) {
             Toast.makeText(getActivity(), "Please check your internet connection", Toast.LENGTH_SHORT).show();
         }
 
@@ -132,10 +134,17 @@ public class FriendsFragment extends Fragment {
             }
         });
 
+        tv_seeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AllUserActivity.class));
+            }
+        });
+
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
         friendAdapter = new FriendsAdapter(getContext(), friendIdList, mDatabaseReference, friendClickListner);
-        suggestionAdapter = new SuggestionAdapter(getContext(), suggestionIdList, mDatabaseReference, friendClickListner, sendRequestClickListner);
+        suggestionAdapter = new SuggestionAdapter(getContext(), suggestionIdList, mDatabaseReference, friendClickListner, sendRequestClickListner, 0);
 
         getFriendList();
     }
@@ -154,19 +163,19 @@ public class FriendsFragment extends Fragment {
                         rv_friends.setAdapter(friendAdapter);
                     }
 
-                    if(friendIdList.size() != 0){
+                    if (friendIdList.size() != 0) {
                         rv_friends.setVisibility(View.VISIBLE);
                         ll_NoFriend.setVisibility(View.GONE);
-                    }else{
+                    } else {
                         rv_friends.setVisibility(View.GONE);
                         ll_NoFriend.setVisibility(View.VISIBLE);
                     }
                     getFriendRequestList();
                 } else {
-                    if(friendIdList.size() != 0){
+                    if (friendIdList.size() != 0) {
                         rv_friends.setVisibility(View.VISIBLE);
                         ll_NoFriend.setVisibility(View.GONE);
-                    }else{
+                    } else {
                         rv_friends.setVisibility(View.GONE);
                         ll_NoFriend.setVisibility(View.VISIBLE);
                     }
@@ -193,7 +202,7 @@ public class FriendsFragment extends Fragment {
                         friendRequestIdList.add(snapshot.getKey());
                     }
                     getBlockedUserList();
-                }else{
+                } else {
                     getBlockedUserList();
                 }
             }
@@ -214,7 +223,7 @@ public class FriendsFragment extends Fragment {
                     if (!friendIdList.contains(snapshot.getKey())) {
                         if (!snapshot.getKey().equalsIgnoreCase(firebaseUser.getUid())) {
                             if (!blockIdList.contains(snapshot.getKey())) {
-                                if(!friendRequestIdList.contains(snapshot.getKey())){
+                                if (!friendRequestIdList.contains(snapshot.getKey())) {
                                     suggestionIdList.add(snapshot.getKey());
                                 }
                             }
@@ -222,10 +231,10 @@ public class FriendsFragment extends Fragment {
                     }
                 }
 
-                if(suggestionIdList.size() == 0){
+                if (suggestionIdList.size() == 0) {
                     tv_suggestion.setVisibility(View.GONE);
                     rv_suggestion.setVisibility(View.GONE);
-                }else{
+                } else {
                     tv_suggestion.setVisibility(View.VISIBLE);
                     rv_suggestion.setVisibility(View.VISIBLE);
                     rv_suggestion.setAdapter(suggestionAdapter);
@@ -419,8 +428,8 @@ public class FriendsFragment extends Fragment {
         mDatabaseReference.child(profileImageTable).child(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Glide.with(getActivity()).load(dataSnapshot.child("imageUrl").getValue().toString())
-                            .into(img_userDialog);
+                Glide.with(getActivity()).load(dataSnapshot.child("imageUrl").getValue().toString())
+                        .into(img_userDialog);
 
                 dialogUserImage = dataSnapshot.child("imageUrl").getValue().toString();
             }
